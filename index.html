@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional | Menu & Policies</title>
+    <!-- Font Awesome for subtle icons (optional but professional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1e293b;
+        }
+
+        /* --- MODERN MENU BAR --- */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,20,40,0.06);
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            background: linear-gradient(145deg, #2563eb, #1e40af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo i {
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #334155;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .nav-item i {
+            font-size: 1rem;
+            color: #4b5563;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .nav-item:hover i {
+            color: #2563eb;
+        }
+
+        .nav-item.active {
+            background: #e8edff;
+            color: #1d4ed8;
+        }
+
+        .nav-item.active i {
+            color: #1d4ed8;
+        }
+
+        /* main content area — just a placeholder to show professional context */
+        .hero {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 800px;
+            line-height: 1.6;
+            border-left: 5px solid #3b82f6;
+            padding-left: 1.5rem;
+            background: #f8fafc;
+            border-radius: 0 12px 12px 0;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .card-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.8rem 1rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.06);
+            text-align: center;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid #e9eef3;
+            transition: transform 0.1s ease;
+        }
+
+        .card i {
+            font-size: 2.2rem;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- FOOTER (professional touch) --- */
+        .footer {
+            background: #ffffffd9;
+            backdrop-filter: blur(4px);
+            border-top: 1px solid #e2e8f0;
+            padding: 1.5rem 2rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .footer-links span {
+            margin: 0 0.8rem;
+            color: #475569;
+            font-weight: 500;
+            cursor: default;
+        }
+
+        .footer-links i {
+            color: #94a3b8;
+            margin-right: 5px;
+        }
+
+        /* --- MODAL STYLES (clean & professional) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(3px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.25s ease, visibility 0s 0.3s;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.25s ease, visibility 0s 0s;
+        }
+
+        .modal-container {
+            background: #ffffff;
+            max-width: 550px;
+            width: 90%;
+            max-height: 80vh;
+            border-radius: 32px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            transform: scale(0.95);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.show .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: 1.5rem 2rem 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .modal-header h2 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-header i {
+            color: #2563eb;
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #94a3b8;
+            transition: color 0.2s;
+            padding: 0 0.5rem;
+        }
+
+        .close-modal:hover {
+            color: #1e293b;
+        }
+
+        .modal-content {
+            padding: 1.8rem 2rem 2.2rem 2rem;
+            overflow-y: auto;
+            max-height: 60vh;
+            line-height: 1.7;
+            color: #334155;
+            font-size: 1.05rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+        }
+
+        .modal-content hr {
+            margin: 1.5rem 0;
+            border: 0;
+            border-top: 1px dashed #cbd5e1;
+        }
+
+        .badge-policy {
+            background: #f1f4f9;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        /* responsive adjustments */
+        @media (max-width: 650px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+                justify-content: center;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PROFESSIONAL MENU BAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-bolt"></i> 
+            <span>Nexus<span style="color:#1e293b;">Pro</span></span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-item" id="homeBtn"><i class="fas fa-home"></i> Home</button>
+            <button class="nav-item" id="termsBtn"><i class="fas fa-file-contract"></i> Terms</button>
+            <button class="nav-item" id="privacyBtn"><i class="fas fa-shield-alt"></i> Privacy</button>
+            <button class="nav-item" id="refundBtn"><i class="fas fa-rotate-left"></i> Refund</button>
+            <button class="nav-item" id="contactBtn"><i class="fas fa-envelope"></i> Contact</button>
+        </div>
+    </nav>
+
+    <!-- MAIN HERO SECTION (demo content) -->
+    <main class="hero">
+        <h1>Build with confidence</h1>
+        <p> <i class="fas fa-check-circle" style="color:#2563eb;"></i>  A clean, professional interface. All legal policies are one click away — displayed in elegant modals. No clutter, full transparency.</p>
+        
+        <div class="card-demo">
+            <div class="card"><i class="fas fa-gavel"></i> Terms of Service</div>
+            <div class="card"><i class="fas fa-lock"></i> Privacy</div>
+            <div class="card"><i class="fas fa-undo-alt"></i> Refund Policy</div>
+            <div class="card"><i class="fas fa-handshake"></i> Compliance</div>
+        </div>
+    </main>
+
+    <!-- FOOTER with secondary links (still clickable to open policies) -->
+    <footer class="footer">
+        <div>© 2025 NexusPro — <span style="color:#1e293b;">integrity first</span></div>
+        <div class="footer-links">
+            <span><i class="fas fa-file-signature"></i> Terms</span>
+            <span><i class="fas fa-user-secret"></i> Privacy</span>
+            <span><i class="fas fa-credit-card"></i> Refund</span>
+        </div>
+    </footer>
+
+    ==================================================
+    MODALS (Terms, Privacy, Refund) – hidden until clicked
+    ================================================== -->
+    
+    <!-- TERMS MODAL -->
+    <div id="termsModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-file-contract"></i> Terms & Conditions</h2>
+                <button class="close-modal" aria-label="close">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p><strong>Last updated: March 2025</strong></p>
+                <p>Welcome to NexusPro. By accessing our platform, you agree to be bound by these terms. <br> <br>
+                1. <strong>Use of Service</strong> — You must be at least 18 years old. You are responsible for all activity under your account.<br>
+                2. <strong>Prohibited Conduct</strong> — You agree not to abuse, harass, or disrupt the service.<br>
+                3. <strong>Intellectual Property</strong> — All content provided is owned by NexusPro and protected by copyright laws.<br>
+                4. <strong>Limitation of Liability</strong> — NexusPro shall not be liable for indirect damages.<br>
+                5. <strong>Changes</strong> — We may modify these terms with notice.<br>
+                <hr>
+                <span class="badge-policy"><i class="far fa-clock"></i> Effective immediately</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY MODAL -->
+    <div id="privacyModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p>Your privacy matters to us. This policy explains how we handle your data.</p>
+                <p>🔐 <strong>Data collection</strong> – We collect only necessary information (email, usage data) to improve services.<br>
+                🍪 <strong>Cookies</strong> – We use essential cookies for functionality.<br>
+                📤 <strong>Third parties</strong> – We never sell your personal data. Limited sharing only with trusted partners who comply with GDPR.<br>
+                ✏️ <strong>Your rights</strong> – You may request access, correction, or deletion of your data.<br>
+                📧 Contact privacy@nexuspro.example for any concerns.</p>
+                <p><i class="fas fa-check-circle" style="color:#16a34a;"></i> We are committed to protecting your personal information.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- REFUND MODAL -->
+    <div id="refundModal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2><i class="fas fa-rotate-left"></i> Refund Policy</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-content">
+                <p><i class="fas fa-credit-card"></i> <strong>30-Day Satisfaction Guarantee</strong></p>
+                <p>If you're not completely satisfied with your purchase, you may request a refund within 30 days of the transaction.</p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Refunds are processed to the original payment method.</li>
+                    <li>Subscription plans can be canceled anytime; refunds for unused months are provided on a pro-rata basis.</li>
+                    <li>One-time fees (setup, consultation) are non-refundable after service delivery.</li>
+                </ul>
+                <p>To request a refund, contact support@nexuspro.example with your order number.</p>
+                <hr>
+                <span class="badge-policy">No hidden deductions</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- simple javascript to handle modals and menu interactivity -->
+    <script>
+        (function() {
+            // Get all required elements
+            const termsBtn = document.getElementById('termsBtn');
+            const privacyBtn = document.getElementById('privacyBtn');
+            const refundBtn = document.getElementById('refundBtn');
+            const homeBtn = document.getElementById('homeBtn');
+            const contactBtn = document.getElementById('contactBtn');
+            
+            const termsModal = document.getElementById('termsModal');
+            const privacyModal = document.getElementById('privacyModal');
+            const refundModal = document.getElementById('refundModal');
+            
+            const closeButtons = document.querySelectorAll('.close-modal');
+            
+            // Also footer spans (they are not buttons by default but we can add click)
+            const footerSpans = document.querySelectorAll('.footer-links span');
+            
+            // Helper to open modal and close others (just for cleanliness)
+            function openModal(modal) {
+                // first close any open modals
+                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+                if (modal) modal.classList.add('show');
+            }
+            
+            // Event listeners for menu buttons
+            termsBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(termsModal);
+                highlightActive(termsBtn);
+            });
+            
+            privacyBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(privacyModal);
+                highlightActive(privacyBtn);
+            });
+            
+            refundBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(refundModal);
+                highlightActive(refundBtn);
+            });
+            
+            homeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // just close any open modal and show home (no modal)
+                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+                highlightActive(homeBtn);
+                alert('🏠 Home section — all policies hidden. Click Terms, Privacy, or Refund in the menu.');
+            });
+            
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+                highlightActive(contactBtn);
+                alert('📬 Contact page: support@nexuspro.example \n(or use modal policies from menu)');
+            });
+            
+            // Highlight active menu item (simple)
+            function highlightActive(active) {
+                document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+                active.classList.add('active');
+            }
+            
+            // close modals with close buttons
+            closeButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // find parent modal-overlay and remove show
+                    const modal = this.closest('.modal-overlay');
+                    if (modal) modal.classList.remove('show');
+                    // remove active from menu items? optional: we can deactive, but we keep neutral
+                    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+                });
+            });
+            
+            // Click outside modal to close (on overlay)
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === this) { // click on the background overlay
+                        this.classList.remove('show');
+                        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+                    }
+                });
+            });
+            
+            // Footer spans open corresponding modals
+            if (footerSpans.length >= 3) {
+                footerSpans[0].addEventListener('click', () => {
+                    openModal(termsModal);
+                    highlightActive(termsBtn);
+                });
+                footerSpans[1].addEventListener('click', () => {
+                    openModal(privacyModal);
+                    highlightActive(privacyBtn);
+                });
+                footerSpans[2].addEventListener('click', () => {
+                    openModal(refundModal);
+                    highlightActive(refundBtn);
+                });
+            }
+            
+            // optional: ESC key closes modal
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
+                    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+                }
+            });
+            
+            // If any modal open on load? no.
+        })();
+    </script>
+    <!-- Extra tiny style for footer spans to look clickable (but not necessary) -->
+    <style>
+        .footer-links span {
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+            padding: 0.3rem 0.6rem;
+            border-radius: 30px;
+        }
+        .footer-links span:hover {
+            background: #eef2f6;
+            color: #0f172a;
+        }
+        .nav-item {
+            cursor: pointer;
+        }
+        .modal-content ul {
+            padding-left: 1.2rem;
+        }
+        .modal-content li {
+            margin-bottom: 0.3rem;
+        }
+    </style>
+</body>
+</html>

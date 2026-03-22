@@ -1,553 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional | Menu & Policies</title>
-    <!-- Font Awesome for subtle icons (optional but professional) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background: #f5f7fb;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: #1e293b;
-        }
-
-        /* --- MODERN MENU BAR --- */
-        .navbar {
-            background: #ffffff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,20,40,0.06);
-            padding: 0.8rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(2px);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            background: linear-gradient(145deg, #2563eb, #1e40af);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .logo i {
-            color: #2563eb;
-            font-size: 2rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-item {
-            background: transparent;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #334155;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .nav-item i {
-            font-size: 1rem;
-            color: #4b5563;
-            transition: color 0.2s;
-        }
-
-        .nav-item:hover {
-            background: #f1f5f9;
-            color: #0f172a;
-        }
-
-        .nav-item:hover i {
-            color: #2563eb;
-        }
-
-        .nav-item.active {
-            background: #e8edff;
-            color: #1d4ed8;
-        }
-
-        .nav-item.active i {
-            color: #1d4ed8;
-        }
-
-        /* main content area — just a placeholder to show professional context */
-        .hero {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-            flex: 1;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #1e293b, #334155);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #475569;
-            max-width: 800px;
-            line-height: 1.6;
-            border-left: 5px solid #3b82f6;
-            padding-left: 1.5rem;
-            background: #f8fafc;
-            border-radius: 0 12px 12px 0;
-            padding: 1.2rem 1.5rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-        }
-
-        .card-demo {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .card {
-            background: white;
-            padding: 1.8rem 1rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.06);
-            text-align: center;
-            font-weight: 500;
-            color: #1e293b;
-            border: 1px solid #e9eef3;
-            transition: transform 0.1s ease;
-        }
-
-        .card i {
-            font-size: 2.2rem;
-            color: #2563eb;
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- FOOTER (professional touch) --- */
-        .footer {
-            background: #ffffffd9;
-            backdrop-filter: blur(4px);
-            border-top: 1px solid #e2e8f0;
-            padding: 1.5rem 2rem;
-            margin-top: 2.5rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.95rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .footer-links span {
-            margin: 0 0.8rem;
-            color: #475569;
-            font-weight: 500;
-            cursor: default;
-        }
-
-        .footer-links i {
-            color: #94a3b8;
-            margin-right: 5px;
-        }
-
-        /* --- MODAL STYLES (clean & professional) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(3px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.25s ease, visibility 0s 0.3s;
-            z-index: 1000;
-        }
-
-        .modal-overlay.show {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.25s ease, visibility 0s 0s;
-        }
-
-        .modal-container {
-            background: #ffffff;
-            max-width: 550px;
-            width: 90%;
-            max-height: 80vh;
-            border-radius: 32px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .modal-overlay.show .modal-container {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            padding: 1.5rem 2rem 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eef2f6;
-        }
-
-        .modal-header h2 {
-            font-weight: 600;
-            font-size: 1.8rem;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .modal-header i {
-            color: #2563eb;
-            font-size: 1.8rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            line-height: 1;
-            cursor: pointer;
-            color: #94a3b8;
-            transition: color 0.2s;
-            padding: 0 0.5rem;
-        }
-
-        .close-modal:hover {
-            color: #1e293b;
-        }
-
-        .modal-content {
-            padding: 1.8rem 2rem 2.2rem 2rem;
-            overflow-y: auto;
-            max-height: 60vh;
-            line-height: 1.7;
-            color: #334155;
-            font-size: 1.05rem;
-        }
-
-        .modal-content p {
-            margin-bottom: 1rem;
-        }
-
-        .modal-content hr {
-            margin: 1.5rem 0;
-            border: 0;
-            border-top: 1px dashed #cbd5e1;
-        }
-
-        .badge-policy {
-            background: #f1f4f9;
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: #475569;
-        }
-
-        /* responsive adjustments */
-        @media (max-width: 650px) {
-            .navbar {
-                padding: 0.8rem 1rem;
-                justify-content: center;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .nav-links {
-                justify-content: center;
-            }
-            .footer {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- PROFESSIONAL MENU BAR -->
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-bolt"></i> 
-            <span>Nexus<span style="color:#1e293b;">Pro</span></span>
-        </div>
-        <div class="nav-links">
-            <button class="nav-item" id="homeBtn"><i class="fas fa-home"></i> Home</button>
-            <button class="nav-item" id="termsBtn"><i class="fas fa-file-contract"></i> Terms</button>
-            <button class="nav-item" id="privacyBtn"><i class="fas fa-shield-alt"></i> Privacy</button>
-            <button class="nav-item" id="refundBtn"><i class="fas fa-rotate-left"></i> Refund</button>
-            <button class="nav-item" id="contactBtn"><i class="fas fa-envelope"></i> Contact</button>
-        </div>
-    </nav>
-
-    <!-- MAIN HERO SECTION (demo content) -->
-    <main class="hero">
-        <h1>Build with confidence</h1>
-        <p> <i class="fas fa-check-circle" style="color:#2563eb;"></i>  A clean, professional interface. All legal policies are one click away — displayed in elegant modals. No clutter, full transparency.</p>
-        
-        <div class="card-demo">
-            <div class="card"><i class="fas fa-gavel"></i> Terms of Service</div>
-            <div class="card"><i class="fas fa-lock"></i> Privacy</div>
-            <div class="card"><i class="fas fa-undo-alt"></i> Refund Policy</div>
-            <div class="card"><i class="fas fa-handshake"></i> Compliance</div>
-        </div>
-    </main>
-
-    <!-- FOOTER with secondary links (still clickable to open policies) -->
-    <footer class="footer">
-        <div>© 2025 NexusPro — <span style="color:#1e293b;">integrity first</span></div>
-        <div class="footer-links">
-            <span><i class="fas fa-file-signature"></i> Terms</span>
-            <span><i class="fas fa-user-secret"></i> Privacy</span>
-            <span><i class="fas fa-credit-card"></i> Refund</span>
-        </div>
-    </footer>
-
-    ==================================================
-    MODALS (Terms, Privacy, Refund) – hidden until clicked
-    ================================================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nike | Air Max Pulse</title>
+  <!-- Tailwind CSS + Google Fonts + Inter (fallback) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom config to match Nike design language -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
     
-    <!-- TERMS MODAL -->
-    <div id="termsModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h2><i class="fas fa-file-contract"></i> Terms & Conditions</h2>
-                <button class="close-modal" aria-label="close">&times;</button>
-            </div>
-            <div class="modal-content">
-                <p><strong>Last updated: March 2025</strong></p>
-                <p>Welcome to NexusPro. By accessing our platform, you agree to be bound by these terms. <br> <br>
-                1. <strong>Use of Service</strong> — You must be at least 18 years old. You are responsible for all activity under your account.<br>
-                2. <strong>Prohibited Conduct</strong> — You agree not to abuse, harass, or disrupt the service.<br>
-                3. <strong>Intellectual Property</strong> — All content provided is owned by NexusPro and protected by copyright laws.<br>
-                4. <strong>Limitation of Liability</strong> — NexusPro shall not be liable for indirect damages.<br>
-                5. <strong>Changes</strong> — We may modify these terms with notice.<br>
-                <hr>
-                <span class="badge-policy"><i class="far fa-clock"></i> Effective immediately</span>
-                </p>
-            </div>
-        </div>
-    </div>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- PRIVACY MODAL -->
-    <div id="privacyModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-content">
-                <p>Your privacy matters to us. This policy explains how we handle your data.</p>
-                <p>🔐 <strong>Data collection</strong> – We collect only necessary information (email, usage data) to improve services.<br>
-                🍪 <strong>Cookies</strong> – We use essential cookies for functionality.<br>
-                📤 <strong>Third parties</strong> – We never sell your personal data. Limited sharing only with trusted partners who comply with GDPR.<br>
-                ✏️ <strong>Your rights</strong> – You may request access, correction, or deletion of your data.<br>
-                📧 Contact privacy@nexuspro.example for any concerns.</p>
-                <p><i class="fas fa-check-circle" style="color:#16a34a;"></i> We are committed to protecting your personal information.</p>
-            </div>
-        </div>
-    </div>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      background-color: #0a0a0a;
+      color: #fafafa;
+    }
 
-    <!-- REFUND MODAL -->
-    <div id="refundModal" class="modal-overlay">
-        <div class="modal-container">
-            <div class="modal-header">
-                <h2><i class="fas fa-rotate-left"></i> Refund Policy</h2>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-content">
-                <p><i class="fas fa-credit-card"></i> <strong>30-Day Satisfaction Guarantee</strong></p>
-                <p>If you're not completely satisfied with your purchase, you may request a refund within 30 days of the transaction.</p>
-                <ul style="margin-left: 1.5rem;">
-                    <li>Refunds are processed to the original payment method.</li>
-                    <li>Subscription plans can be canceled anytime; refunds for unused months are provided on a pro-rata basis.</li>
-                    <li>One-time fees (setup, consultation) are non-refundable after service delivery.</li>
-                </ul>
-                <p>To request a refund, contact support@nexuspro.example with your order number.</p>
-                <hr>
-                <span class="badge-policy">No hidden deductions</span>
-            </div>
-        </div>
-    </div>
+    /* custom orange accent */
+    .accent-orange {
+      color: #FF4E00;
+    }
+    .bg-accent-orange {
+      background-color: #FF4E00;
+    }
+    .border-accent-orange {
+      border-color: #FF4E00;
+    }
+    .ring-accent-orange {
+      --tw-ring-color: #FF4E00;
+    }
+    
+    /* product card hover zoom & second image effect */
+    .product-card-img {
+      transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .product-card:hover .product-card-img {
+      transform: scale(1.05);
+    }
+    .second-image {
+      transition: opacity 0.4s ease;
+    }
+    .product-card:hover .primary-img {
+      opacity: 0;
+    }
+    .product-card:hover .secondary-img {
+      opacity: 1;
+    }
 
-    <!-- simple javascript to handle modals and menu interactivity -->
-    <script>
-        (function() {
-            // Get all required elements
-            const termsBtn = document.getElementById('termsBtn');
-            const privacyBtn = document.getElementById('privacyBtn');
-            const refundBtn = document.getElementById('refundBtn');
-            const homeBtn = document.getElementById('homeBtn');
-            const contactBtn = document.getElementById('contactBtn');
-            
-            const termsModal = document.getElementById('termsModal');
-            const privacyModal = document.getElementById('privacyModal');
-            const refundModal = document.getElementById('refundModal');
-            
-            const closeButtons = document.querySelectorAll('.close-modal');
-            
-            // Also footer spans (they are not buttons by default but we can add click)
-            const footerSpans = document.querySelectorAll('.footer-links span');
-            
-            // Helper to open modal and close others (just for cleanliness)
-            function openModal(modal) {
-                // first close any open modals
-                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
-                if (modal) modal.classList.add('show');
-            }
-            
-            // Event listeners for menu buttons
-            termsBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(termsModal);
-                highlightActive(termsBtn);
-            });
-            
-            privacyBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(privacyModal);
-                highlightActive(privacyBtn);
-            });
-            
-            refundBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                openModal(refundModal);
-                highlightActive(refundBtn);
-            });
-            
-            homeBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                // just close any open modal and show home (no modal)
-                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
-                highlightActive(homeBtn);
-                alert('🏠 Home section — all policies hidden. Click Terms, Privacy, or Refund in the menu.');
-            });
-            
-            contactBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
-                highlightActive(contactBtn);
-                alert('📬 Contact page: support@nexuspro.example \n(or use modal policies from menu)');
-            });
-            
-            // Highlight active menu item (simple)
-            function highlightActive(active) {
-                document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-                active.classList.add('active');
-            }
-            
-            // close modals with close buttons
-            closeButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // find parent modal-overlay and remove show
-                    const modal = this.closest('.modal-overlay');
-                    if (modal) modal.classList.remove('show');
-                    // remove active from menu items? optional: we can deactive, but we keep neutral
-                    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-                });
-            });
-            
-            // Click outside modal to close (on overlay)
-            document.querySelectorAll('.modal-overlay').forEach(overlay => {
-                overlay.addEventListener('click', function(e) {
-                    if (e.target === this) { // click on the background overlay
-                        this.classList.remove('show');
-                        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-                    }
-                });
-            });
-            
-            // Footer spans open corresponding modals
-            if (footerSpans.length >= 3) {
-                footerSpans[0].addEventListener('click', () => {
-                    openModal(termsModal);
-                    highlightActive(termsBtn);
-                });
-                footerSpans[1].addEventListener('click', () => {
-                    openModal(privacyModal);
-                    highlightActive(privacyBtn);
-                });
-                footerSpans[2].addEventListener('click', () => {
-                    openModal(refundModal);
-                    highlightActive(refundBtn);
-                });
-            }
-            
-            // optional: ESC key closes modal
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('show'));
-                    document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
-                }
-            });
-            
-            // If any modal open on load? no.
-        })();
-    </script>
-    <!-- Extra tiny style for footer spans to look clickable (but not necessary) -->
-    <style>
-        .footer-links span {
-            cursor: pointer;
-            transition: color 0.2s, background 0.2s;
-            padding: 0.3rem 0.6rem;
-            border-radius: 30px;
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF4E00;
+      border-radius: 8px;
+    }
+    
+    /* cart drawer & modal animations */
+    .drawer-transition {
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+    .modal-transition {
+      transition: opacity 0.25s ease, visibility 0.25s;
+    }
+    .no-scroll {
+      overflow: hidden;
+    }
+    
+    /* star rating */
+    .star-filled {
+      color: #FF4E00;
+    }
+    .star-empty {
+      color: #3d3d3a;
+    }
+    
+    /* quick add button */
+    .quick-add-btn {
+      transition: all 0.2s;
+    }
+    
+    @media (max-width: 768px) {
+      .quick-add-btn {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            nikeblack: '#0a0a0a',
+            nikegray: '#111111',
+            nikeorange: '#FF4E00',
+          },
+          spacing: {
+            '18': '4.5rem',
+          }
         }
-        .footer-links span:hover {
-            background: #eef2f6;
-            color: #0f172a;
-        }
-        .nav-item {
-            cursor: pointer;
-        }
-        .modal-content ul {
-            padding-left: 1.2rem;
-        }
-        .modal-content li {
-            margin-bottom: 0.3rem;
-        }
-    </style>
+      }
+    }
+  </script>
+</head>
+<body class="bg-nikeblack text-white antialiased">
+
+  <!-- ========== HEADER / NAVBAR ========== -->
+  <header class="sticky top-0 z-50 bg-nikeblack/95 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-4 flex items-center justify-between">
+      <!-- logo -->
+      <div class="text-2xl font-black tracking-tighter flex items-center gap-1">
+        <span class="text-white">NIKE</span>
+        <span class="text-nikeorange text-3xl">⚡</span>
+      </div>
+      
+      <!-- desktop nav (simplified) -->
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a href="#" class="hover:text-nikeorange transition">New & Featured</a>
+        <a href="#" class="hover:text-nikeorange transition">Men</a>
+        <a href="#" class="hover:text-nikeorange transition">Women</a>
+        <a href="#" class="hover:text-nikeorange transition">Kids</a>
+        <a href="#" class="hover:text-nikeorange transition">Sale</a>
+      </div>
+      
+      <!-- right icons -->
+      <div class="flex items-center gap-5">
+        <button class="hidden md:block hover:text-nikeorange">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+        </button>
+        <button id="cartIconBtn" class="relative hover:text-nikeorange transition">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-nikeorange text-black text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="relative w-full h-[70vh] min-h-[520px] overflow-hidden">
+    <div class="absolute inset-0 bg-black/40 z-10"></div>
+    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" class="absolute w-full h-full object-cover object-center" alt="hero">
+    <div class="relative z-20 flex flex-col items-start justify-center h-full max-w-7xl mx-auto px-6 md:px-12">
+      <div class="max-w-2xl">
+        <div class="flex items-center gap-2 text-sm font-mono text-nikeorange tracking-wider mb-4">
+          <span>✦ JUST DROPPED</span>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.1]">Air Max Pulse</h1>
+        <p class="text-gray-300 text-lg mt-4 max-w-lg">Feel the rhythm of London. Fresh texture, premium feel, and revolutionary cushioning.</p>
+        <div class="mt-8 flex gap-4">
+          <button class="bg-white text-black px-7 py-3 font-bold rounded-full hover:bg-nikeorange hover:text-white transition">Shop Now</button>
+          <button class="border border-white/40 px-7 py-3 font-bold rounded-full hover:bg-white/10 transition">Explore</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FILTER BAR + CATEGORY ========== -->
+  <div class="max-w-7xl mx-auto px-5 md:px-8 mt-12 mb-6">
+    <div class="flex flex-wrap justify-between items-center border-b border-white/10 pb-5">
+      <div class="flex gap-3 flex-wrap">
+        <button data-filter="all" class="filter-btn active-filter bg-white/10 px-5 py-2 rounded-full text-sm font-medium hover:bg-nikeorange/30 transition">All</button>
+        <button data-filter="men" class="filter-btn px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition">Men</button>
+        <button data-filter="women" class="filter-btn px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition">Women</button>
+        <button data-filter="kids" class="filter-btn px-5 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition">Kids</button>
+      </div>
+      <div class="text-sm text-gray-400 mt-3 sm:mt-0">Showing <span id="productCount">0</span> products</div>
+    </div>
+  </div>
+
+  <!-- ========== PRODUCT GRID ========== -->
+  <div class="max-w-7xl mx-auto px-5 md:px-8 pb-20">
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 gap-y-10">
+      <!-- products injected dynamically -->
+    </div>
+  </div>
+
+  <!-- ========== CART DRAWER (SLIDE FROM RIGHT) ========== -->
+  <div id="cartOverlay" class="fixed inset-0 bg-black/70 z-[100] opacity-0 invisible transition-all duration-300"></div>
+  <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-nikegray border-l border-white/10 z-[101] shadow-2xl transform translate-x-full drawer-transition flex flex-col">
+    <div class="flex justify-between items-center p-5 border-b border-white/10">
+      <h2 class="text-xl font-bold">Your Bag (<span id="drawerItemCount">0</span>)</h2>
+      <button id="closeCartBtn" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+    </div>
+    <div id="cartItemsList" class="flex-1 overflow-y-auto p-5 space-y-5">
+      <!-- cart items dynamic -->
+      <div class="text-center text-gray-400 py-12">Your bag is empty</div>
+    </div>
+    <div class="border-t border-white/10 p-5 space-y-3">
+      <div class="flex justify-between text-sm">
+        <span>Free shipping threshold</span>
+        <span id="freeShippingMsg" class="text-nikeorange">Add $150 for free shipping</span>
+      </div>
+      <div class="w-full bg-white/10 rounded-full h-1.5">
+        <div id="shippingProgress" class="bg-nikeorange h-1.5 rounded-full" style="width: 0%"></div>
+      </div>
+      <div class="flex justify-between font-bold text-lg">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <button id="checkoutBtn" class="w-full bg-white text-black py-3 rounded-full font-bold hover:bg-nikeorange hover:text-white transition">Checkout</button>
+      <p class="text-xs text-gray-400 text-center">Free returns & members get free shipping</p>
+    </div>
+  </div>
+
+  <!-- ========== QUICK VIEW MODAL ========== -->
+  <div id="quickViewModal" class="fixed inset-0 z-[200] flex items-center justify-center px-4 modal-transition opacity-0 invisible">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modalBackdrop"></div>
+    <div class="relative bg-nikegray max-w-3xl w-full rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto">
+      <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl z-10">&times;</button>
+      <div id="modalContent" class="p-6 md:p-8">
+        <!-- dynamic product detail -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- PRODUCT DATABASE ----------
+    const products = [
+      { id: 1, name: "Nike Air Max 90", subtitle: "Men's Shoes", price: 120, comparePrice: 150, images: ["https://placehold.co/600x600/222/white?text=Air+Max+90", "https://placehold.co/600x600/333/white?text=Air+Max+90+Alt"], badge: "bestseller", rating: 4.5, reviewCount: 234, category: "men", sizes: ["7","8","9","10","11","12"], colors: ["Black/Anthracite", "White/Red"] },
+      { id: 2, name: "Nike Dunk Low", subtitle: "Women's Shoes", price: 115, comparePrice: null, images: ["https://placehold.co/600x600/222/white?text=Dunk+Low", "https://placehold.co/600x600/2c2c2c/white?text=Dunk+Low+Panda"], badge: "new", rating: 4.8, reviewCount: 567, category: "women", sizes: ["5","6","7","8","9","10"], colors: ["Panda", "Midnight Navy"] },
+      { id: 3, name: "Nike Air Force 1 '07", subtitle: "Men's Shoes", price: 110, comparePrice: 130, images: ["https://placehold.co/600x600/111/white?text=AF1", "https://placehold.co/600x600/1e1e1e/white?text=AF1+White"], badge: "exclusive", rating: 4.7, reviewCount: 890, category: "men", sizes: ["7","8","9","10","11","12"], colors: ["White", "Triple Black"] },
+      { id: 4, name: "Nike Revolution 6", subtitle: "Kids' Running Shoes", price: 65, comparePrice: 80, images: ["https://placehold.co/600x600/2d2d2d/white?text=Revolution+6", "https://placehold.co/600x600/3a3a3a/white?text=Rev+6+Blue"], badge: "sale", rating: 4.3, reviewCount: 342, category: "kids", sizes: ["1","2","3","4","5","6"], colors: ["Blue/Yellow", "Black/Pink"] },
+      { id: 5, name: "Nike ZoomX Vaporfly", subtitle: "Men's Running", price: 250, comparePrice: 275, images: ["https://placehold.co/600x600/1a1a1a/white?text=Vaporfly", "https://placehold.co/600x600/292929/white?text=Vaporfly+Green"], badge: "bestseller", rating: 4.9, reviewCount: 1210, category: "men", sizes: ["8","9","10","11"], colors: ["Neon Green", "Black/Volt"] },
+      { id: 6, name: "Nike Sportswear Phoenix", subtitle: "Women's Fleece", price: 85, comparePrice: null, images: ["https://placehold.co/600x600/262626/white?text=Phoenix", "https://placehold.co/600x600/2f2f2f/white?text=Phoenix+Fit"], badge: null, rating: 4.4, reviewCount: 178, category: "women", sizes: ["XS","S","M","L","XL"], colors: ["Grey", "Olive"] },
+      { id: 7, name: "Nike Air Jordan 1 Mid", subtitle: "Kids' Sneakers", price: 125, comparePrice: 145, images: ["https://placehold.co/600x600/1e1e1e/white?text=AJ1+Mid", "https://placehold.co/600x600/2b2b2b/white?text=AJ1+Chicago"], badge: "exclusive", rating: 4.8, reviewCount: 423, category: "kids", sizes: ["3.5","4","5","6","7"], colors: ["Chicago", "Royal Blue"] },
+      { id: 8, name: "Nike Metcon 9", subtitle: "Men's Training", price: 150, comparePrice: 170, images: ["https://placehold.co/600x600/252525/white?text=Metcon+9", "https://placehold.co/600x600/303030/white?text=Metcon+9+Grey"], badge: "new", rating: 4.6, reviewCount: 290, category: "men", sizes: ["8","9","10","11","12"], colors: ["Black/Gum", "Dark Smoke"] }
+    ];
+
+    // cart state (localStorage)
+    let cart = JSON.parse(localStorage.getItem('nike_cart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('nike_wishlist')) || {};  // object { productId: true }
+    let activeFilter = "all";
+    
+    // helper: save cart
+    function saveCart() {
+      localStorage.setItem('nike_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+    
+    function updateCartUI() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cartCountBadge').innerText = totalItems;
+      document.getElementById('drawerItemCount').innerText = totalItems;
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      document.getElementById('cartSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+      
+      // free shipping logic ($150 threshold)
+      const remaining = 150 - subtotal;
+      const progressPercent = Math.min(100, (subtotal / 150) * 100);
+      document.getElementById('shippingProgress').style.width = `${progressPercent}%`;
+      const freeMsgSpan = document.getElementById('freeShippingMsg');
+      if (subtotal >= 150) {
+        freeMsgSpan.innerHTML = "✨ Free shipping applied!";
+      } else {
+        freeMsgSpan.innerHTML = `Add $${(150 - subtotal).toFixed(0)} more for free shipping`;
+      }
+      
+      // render cart items list
+      const cartContainer = document.getElementById('cartItemsList');
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `<div class="text-center text-gray-400 py-12">Your bag is empty</div>`;
+        return;
+      }
+      cartContainer.innerHTML = cart.map(item => `
+        <div class="flex gap-3 border-b border-white/10 pb-4">
+          <img src="${item.image}" class="w-16 h-16 object-cover rounded-md" alt="${item.name}">
+          <div class="flex-1">
+            <div class="font-semibold">${item.name}</div>
+            <div class="text-xs text-gray-400">Size: ${item.size} / Color: ${item.color}</div>
+            <div class="flex justify-between items-center mt-1">
+              <span class="text-sm font-bold">$${item.price}</span>
+              <div class="flex items-center gap-2">
+                <button data-id="${item.id}" data-size="${item.size}" data-color="${item.color}" class="cart-decr text-white/70 hover:text-white text-lg px-1">−</button>
+                <span class="text-sm w-6 text-center">${item.quantity}</span>
+                <button data-id="${item.id}" data-size="${item.size}" data-color="${item.color}" class="cart-incr text-white/70 hover:text-white text-lg px-1">+</button>
+                <button data-id="${item.id}" data-size="${item.size}" data-color="${item.color}" class="cart-remove text-red-400 text-xs ml-2 underline">remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      // attach cart item events
+      document.querySelectorAll('.cart-decr').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(btn.dataset.id);
+          const size = btn.dataset.size;
+          const color = btn.dataset.color;
+          const existing = cart.find(i => i.id === id && i.size === size && i.color === color);
+          if (existing && existing.quantity > 1) {
+            existing.quantity -= 1;
+          } else {
+            cart = cart.filter(i => !(i.id === id && i.size === size && i.color === color));
+          }
+          saveCart();
+        });
+      });
+      document.querySelectorAll('.cart-incr').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const size = btn.dataset.size;
+          const color = btn.dataset.color;
+          const existing = cart.find(i => i.id === id && i.size === size && i.color === color);
+          if (existing) existing.quantity += 1;
+          saveCart();
+        });
+      });
+      document.querySelectorAll('.cart-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.dataset.id);
+          const size = btn.dataset.size;
+          const color = btn.dataset.color;
+          cart = cart.filter(i => !(i.id === id && i.size === size && i.color === color));
+          saveCart();
+        });
+      });
+    }
+    
+    function addToCart(product, selectedSize, selectedColor, quantity = 1) {
+      if (!selectedSize) { alert("Please select a size"); return false; }
+      const existingItem = cart.find(i => i.id === product.id && i.size === selectedSize && i.color === selectedColor);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          size: selectedSize,
+          color: selectedColor,
+          image: product.images[0],
+          quantity: quantity
+        });
+      }
+      saveCart();
+      // open drawer feedback
+      document.getElementById('cartDrawer').classList.remove('translate-x-full');
+      document.getElementById('cartOverlay').classList.remove('opacity-0', 'invisible');
+      return true;
+    }
+    
+    // render products with filter & wishlist
+    function renderProducts() {
+      let filtered = activeFilter === 'all' ? products : products.filter(p => p.category === activeFilter);
+      document.getElementById('productCount').innerText = filtered.length;
+      const container = document.getElementById('productGrid');
+      container.innerHTML = filtered.map(product => {
+        const isWished = wishlist[product.id] || false;
+        const discountPercent = product.comparePrice ? Math.round(((product.comparePrice - product.price) / product.comparePrice)*100) : 0;
+        let badgeHtml = '';
+        if (product.badge === 'bestseller') badgeHtml = '<span class="absolute top-3 left-3 bg-white text-black text-[11px] font-bold px-2 py-1 rounded-full z-10">BESTSELLER</span>';
+        else if (product.badge === 'new') badgeHtml = '<span class="absolute top-3 left-3 bg-black text-white text-[11px] font-bold px-2 py-1 rounded-full z-10">NEW</span>';
+        else if (product.badge === 'sale') badgeHtml = '<span class="absolute top-3 left-3 bg-nikeorange text-black text-[11px] font-bold px-2 py-1 rounded-full z-10">SALE</span>';
+        else if (product.badge === 'exclusive') badgeHtml = '<span class="absolute top-3 left-3 bg-nikeorange/80 text-white text-[11px] font-bold px-2 py-1 rounded-full z-10">EXCLUSIVE</span>';
+        
+        const stars = Array(5).fill(0).map((_, i) => i < Math.floor(product.rating) ? '★' : (i < product.rating ? '★' : '☆')).join('');
+        return `
+          <div class="product-card group relative bg-nikegray rounded-2xl overflow-hidden transition hover:shadow-xl">
+            <div class="relative overflow-hidden aspect-square">
+              ${badgeHtml}
+              <button data-id="${product.id}" class="wishlist-btn absolute top-3 right-3 z-10 bg-black/40 backdrop-blur rounded-full p-1.5 hover:bg-black/70 transition">
+                <svg class="w-5 h-5 ${isWished ? 'fill-red-500 text-red-500' : 'fill-none stroke-white'}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </button>
+              <div class="relative w-full h-full">
+                <img src="${product.images[0]}" class="primary-img absolute inset-0 w-full h-full object-cover product-card-img transition-opacity duration-300">
+                <img src="${product.images[1]}" class="secondary-img absolute inset-0 w-full h-full object-cover product-card-img opacity-0 transition-opacity duration-300">
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex justify-between items-start">
+                <div><h3 class="font-bold text-base">${product.name}</h3><p class="text-xs text-gray-400">${product.subtitle}</p></div>
+                <div class="text-right"><div class="font-bold">$${product.price}</div>${product.comparePrice ? `<div class="text-xs line-through text-gray-500">$${product.comparePrice}</div>` : ''}</div>
+              </div>
+              <div class="flex items-center gap-1 mt-2 text-sm">${stars}<span class="text-xs text-gray-400 ml-1">(${product.reviewCount})</span></div>
+              <button data-product='${JSON.stringify(product)}' class="quick-add-trigger mt-4 w-full py-2 border border-white/20 rounded-full text-sm font-medium hover:bg-white hover:text-black transition">Quick Add</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      // attach wishlist events
+      document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const pid = parseInt(btn.dataset.id);
+          if (wishlist[pid]) delete wishlist[pid];
+          else wishlist[pid] = true;
+          localStorage.setItem('nike_wishlist', JSON.stringify(wishlist));
+          renderProducts(); // re-render to reflect heart
+        });
+      });
+      
+      // quick add triggers
+      document.querySelectorAll('.quick-add-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const productData = JSON.parse(btn.dataset.product);
+          openQuickView(productData);
+        });
+      });
+    }
+    
+    // Quick View Modal
+    let currentModalProduct = null;
+    let selectedModalSize = null;
+    let selectedModalColor = null;
+    
+    function openQuickView(product) {
+      currentModalProduct = product;
+      selectedModalSize = product.sizes ? product.sizes[0] : "M";
+      selectedModalColor = product.colors ? product.colors[0] : "Standard";
+      updateModalContent();
+      document.getElementById('quickViewModal').classList.remove('opacity-0', 'invisible');
+      document.body.classList.add('no-scroll');
+    }
+    
+    function updateModalContent() {
+      const product = currentModalProduct;
+      const modalDiv = document.getElementById('modalContent');
+      modalDiv.innerHTML = `
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="md:w-1/2"><img src="${product.images[0]}" class="rounded-xl w-full object-cover"></div>
+          <div class="md:w-1/2">
+            <div class="flex justify-between items-start"><div><h2 class="text-2xl font-bold">${product.name}</h2><p class="text-gray-400">${product.subtitle}</p></div><div class="text-right"><span class="text-2xl font-bold">$${product.price}</span>${product.comparePrice ? `<span class="line-through text-gray-500 ml-2">$${product.comparePrice}</span>` : ''}</div></div>
+            <div class="mt-4"><div class="text-sm font-medium mb-2">Select Size</div><div class="flex flex-wrap gap-2" id="modalSizeOptions">${product.sizes.map(sz => `<button data-size="${sz}" class="size-opt px-4 py-2 rounded-full border border-white/20 text-sm ${selectedModalSize === sz ? 'bg-nikeorange text-black border-nikeorange' : ''}">${sz}</button>`).join('')}</div></div>
+            <div class="mt-4"><div class="text-sm font-medium mb-2">Color</div><div class="flex flex-wrap gap-3" id="modalColorOptions">${product.colors.map(c => `<button data-color="${c}" class="color-opt px-4 py-2 rounded-full border ${selectedModalColor === c ? 'border-nikeorange bg-nikeorange/20' : 'border-white/30'} text-sm">${c}</button>`).join('')}</div></div>
+            <button id="modalAddToCartBtn" class="w-full mt-6 bg-white text-black py-3 rounded-full font-bold hover:bg-nikeorange transition">Add to Cart — $${product.price}</button>
+          </div>
+        </div>
+      `;
+      document.querySelectorAll('.size-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectedModalSize = btn.dataset.size; updateModalContent(); });
+      });
+      document.querySelectorAll('.color-opt').forEach(btn => {
+        btn.addEventListener('click', () => { selectedModalColor = btn.dataset.color; updateModalContent(); });
+      });
+      document.getElementById('modalAddToCartBtn').addEventListener('click', () => {
+        if (!selectedModalSize) { alert("Pick size"); return; }
+        addToCart(currentModalProduct, selectedModalSize, selectedModalColor, 1);
+        closeModal();
+      });
+    }
+    function closeModal() {
+      document.getElementById('quickViewModal').classList.add('opacity-0', 'invisible');
+      document.body.classList.remove('no-scroll');
+    }
+    
+    // filter logic + cart drawer events
+    function init() {
+      renderProducts();
+      updateCartUI();
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter', 'bg-white/10'));
+          btn.classList.add('active-filter', 'bg-white/10');
+          activeFilter = btn.dataset.filter;
+          renderProducts();
+        });
+      });
+      document.getElementById('cartIconBtn').addEventListener('click', () => {
+        document.getElementById('cartDrawer').classList.remove('translate-x-full');
+        document.getElementById('cartOverlay').classList.remove('opacity-0', 'invisible');
+      });
+      function closeDrawer() {
+        document.getElementById('cartDrawer').classList.add('translate-x-full');
+        document.getElementById('cartOverlay').classList.add('opacity-0', 'invisible');
+      }
+      document.getElementById('closeCartBtn').addEventListener('click', closeDrawer);
+      document.getElementById('cartOverlay').addEventListener('click', closeDrawer);
+      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+      document.getElementById('modalBackdrop').addEventListener('click', closeModal);
+      document.getElementById('checkoutBtn').addEventListener('click', () => alert('Checkout flow ready — integrated with Stripe in production.'));
+    }
+    init();
+  </script>
 </body>
 </html>
